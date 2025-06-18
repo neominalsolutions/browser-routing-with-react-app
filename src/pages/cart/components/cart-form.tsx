@@ -3,6 +3,7 @@
 // numeric-input
 // button
 
+import { useRef, useState } from 'react';
 import Button from '../../../components/button/button';
 import Dropdown from '../../../components/dropdown/dropdown.component';
 import Label from '../../../components/label/label';
@@ -22,14 +23,28 @@ function CartForm() {
 		};
 	});
 
+	const priceRef = useRef(0); // seçilen değerin global referansını state değiştiminden sonra bile tutmamızı sağlar. bu sayede her render aldığımızda güncel değere erişimi doğru bir şekilde sağlarız.
+	const quantityRef = useRef(1); // arka planda hesaplama yapmak için global değişken olarak saklanacak değerler.
+
+	const [total, setTotal] = useState(0); // sadece ekran için önemli olan değeri virtual doma tanımladık state yaptık.
+
+	console.log('priceRef', priceRef);
+	console.log('quantityRef', quantityRef);
+
 	const onDropdownSelect = (value: number) => {
 		console.log('selected-item', value);
 		const selectedItem = products.find((x) => x.id === value);
 		console.log('selectedItem', selectedItem);
+
+		// priceRef.current = Number(selectedItem?.price);
+		// setTotal(priceRef.current * quantityRef.current);
 	};
 
 	const onInputChange = (value: number) => {
 		console.log('value', value);
+
+		quantityRef.current = value;
+		setTotal(priceRef.current * quantityRef.current);
 	};
 
 	const onButtonClick = () => {
@@ -57,7 +72,7 @@ function CartForm() {
 				Ekle
 			</Button>
 
-			<Label text="Toplam Tutar" value={0} />
+			<Label text="Toplam Tutar" value={total} />
 
 			<h1>Cart Form</h1>
 		</>
