@@ -9,7 +9,18 @@ import Dropdown from '../../../components/dropdown/dropdown.component';
 import Label from '../../../components/label/label';
 import NumericInput from '../../../components/numeric-input/numeric-input';
 
-function CartForm() {
+export interface CartItem {
+	id: number;
+	name: string;
+	price: number;
+	quantity: number;
+}
+
+type CartFormProps = {
+	onItemAdd(item: CartItem): void;
+};
+
+function CartForm({ onItemAdd }: CartFormProps) {
 	console.log('...rendering');
 
 	const products = [
@@ -25,6 +36,9 @@ function CartForm() {
 		};
 	});
 
+	const productIdRef = useRef(-1); // seçim yok
+	// onDropdownSelect -> productRef.curren = value;
+
 	const priceRef = useRef(0); // seçilen değerin global referansını state değiştiminden sonra bile tutmamızı sağlar. bu sayede her render aldığımızda güncel değere erişimi doğru bir şekilde sağlarız.
 	const quantityRef = useRef(1); // arka planda hesaplama yapmak için global değişken olarak saklanacak değerler.
 
@@ -39,6 +53,7 @@ function CartForm() {
 		console.log('selectedItem', selectedItem);
 		priceRef.current = Number(selectedItem?.price);
 		// setTotal(priceRef.current * quantityRef.current);
+		productIdRef.current = value;
 	};
 
 	const onInputChange = (value: number) => {
@@ -50,6 +65,18 @@ function CartForm() {
 	const onButtonClick = () => {
 		console.log('tıklandı');
 		setTotal(priceRef.current * quantityRef.current);
+
+		const item = products.find((x) => x.id === productIdRef.current);
+
+		// Formda seçilen ekle butonuna basınca eklenecek olan item değeri props ile component üzerinden fırlattık.
+		if (item) {
+			onItemAdd({
+				id: item.id,
+				name: item.name,
+				price: item.price,
+				quantity: quantityRef.current,
+			} as CartItem);
+		}
 	};
 
 	return (

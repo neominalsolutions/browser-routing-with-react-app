@@ -1,13 +1,24 @@
 // Cart Sayfasını yönettiğimiz sayfa component
 
-import CartForm from './components/cart-form';
+import { useState } from 'react';
+import CartForm, { type CartItem } from './components/cart-form';
 import CartSummary from './components/cart-summary';
 
+// Parent Component
 function CartPage() {
+	const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+	const onItemAdd = (item: CartItem) => {
+		console.log('formdan gönderilen', item);
+		setCartItems([...cartItems, item]);
+	};
+
 	return (
 		<>
-			<CartForm />
-			<CartSummary />
+			{/* Child Component */}
+			<CartForm onItemAdd={onItemAdd} />
+			<CartSummary items={cartItems} />
+			{/* Child Component */}
 		</>
 	);
 }
