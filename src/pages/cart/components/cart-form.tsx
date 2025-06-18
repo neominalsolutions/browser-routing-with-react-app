@@ -4,6 +4,7 @@
 // button
 
 import Dropdown from '../../../components/dropdown/dropdown.component';
+import NumericInput from '../../../components/numeric-input/numeric-input';
 
 function CartForm() {
 	const products = [
@@ -25,6 +26,10 @@ function CartForm() {
 		console.log('selectedItem', selectedItem);
 	};
 
+	const onInputChange = (value: number) => {
+		console.log('value', value);
+	};
+
 	return (
 		<>
 			<Dropdown
@@ -32,6 +37,14 @@ function CartForm() {
 				label="Ürünler"
 				defaultText="Ürün Seçiniz"
 				onSelect={onDropdownSelect}
+			/>
+
+			<NumericInput
+				min={1}
+				max={10}
+				defaultValue={1}
+				label="Adet:"
+				onChange={onInputChange}
 			/>
 			<h1>Cart Form</h1>
 		</>

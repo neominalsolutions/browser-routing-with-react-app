@@ -13,7 +13,6 @@ function NumericInput({
 	max,
 	onChange,
 }: NumericProps) {
-	
     const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = (e.target as HTMLInputElement).value;
 		onChange(Number(value));
