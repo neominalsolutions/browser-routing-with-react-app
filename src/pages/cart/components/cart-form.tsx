@@ -36,8 +36,8 @@ function CartForm() {
 		const selectedItem = products.find((x) => x.id === value);
 		console.log('selectedItem', selectedItem);
 
-		// priceRef.current = Number(selectedItem?.price);
-		// setTotal(priceRef.current * quantityRef.current);
+		priceRef.current = Number(selectedItem?.price);
+		setTotal(priceRef.current * quantityRef.current);
 	};
 
 	const onInputChange = (value: number) => {
