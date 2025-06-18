@@ -5,6 +5,7 @@
 
 import Button from '../../../components/button/button';
 import Dropdown from '../../../components/dropdown/dropdown.component';
+import Label from '../../../components/label/label';
 import NumericInput from '../../../components/numeric-input/numeric-input';
 
 function CartForm() {
@@ -55,6 +56,8 @@ function CartForm() {
 			<Button color="secondary" onClick={onButtonClick}>
 				Ekle
 			</Button>
+
+			<Label text="Toplam Tutar" value={0} />
 
 			<h1>Cart Form</h1>
 		</>
