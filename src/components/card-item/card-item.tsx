@@ -1,8 +1,12 @@
+import Button from '../button/button';
+
 type CardItemProps = {
 	text: string;
+	index: number; // hangi item silinecek ise bulmamızı sağlar
+	onItemDelete(index: number): void;
 };
 
-function CardItem({ text }: CardItemProps) {
+function CardItem({ text, index, onItemDelete }: CardItemProps) {
 	return (
 		<>
 			<div style={{ margin: 5 }}>
@@ -15,6 +19,9 @@ function CardItem({ text }: CardItemProps) {
 					}}
 				>
 					{text}
+					<Button color="danger" onClick={() => onItemDelete(index)}>
+						Sil
+					</Button>
 				</div>
 			</div>
 		</>

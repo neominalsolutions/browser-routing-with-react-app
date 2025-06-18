@@ -8,10 +8,19 @@ import CartSummary from './components/cart-summary';
 function CartPage() {
 	const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
+	// Ekleme işlemi için formdan ekle butona basınca yakaladı
 	const onItemAdd = (item: CartItem) => {
 		console.log('formdan gönderilen', item);
 		setCartItems([...cartItems, item]);
 	};
+
+	// CardItem Component içerisinde sil butonuna basınca silinecek olan değeri yakaladı.
+	const onItemRemove = (item: CartItem) => {
+		const filteredItems = cartItems.filter((x) => x.id !== item.id);
+		setCartItems(filteredItems);
+	};
+
+	console.log('...rendering');
 
 	return (
 		<>
@@ -20,7 +29,7 @@ function CartPage() {
 
 			{/* Child Component */}
 			<CartForm onItemAdd={onItemAdd} />
-			<CartSummary items={cartItems} />
+			<CartSummary onItemRemove={onItemRemove} items={cartItems} />
 			{/* Child Component */}
 		</>
 	);
