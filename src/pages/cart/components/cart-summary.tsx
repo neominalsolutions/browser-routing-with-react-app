@@ -17,6 +17,7 @@ function CartSummary({ items }: CartSummaryProps) {
 	return (
 		<>
 			<h1>Cart Summary</h1>
+			<hr></hr>
 			{items.map((item) => {
 				return (
 					<CardItem

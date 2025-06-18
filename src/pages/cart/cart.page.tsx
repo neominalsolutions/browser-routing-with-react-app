@@ -15,6 +15,9 @@ function CartPage() {
 
 	return (
 		<>
+			<h1>Cart Page</h1>
+			<hr></hr>
+
 			{/* Child Component */}
 			<CartForm onItemAdd={onItemAdd} />
 			<CartSummary items={cartItems} />
