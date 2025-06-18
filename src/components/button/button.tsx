@@ -1,8 +1,11 @@
+import type { ReactNode } from 'react';
 import type React from 'react';
+
 // Not Children kısmına text, component, html element ne itersek geçebiliriz.
+
 type ButtonProps = {
 	color?: ButtonColor; // #ffff
-	children: React.ReactNode; // Ekle // Component Aç ve Kapama tagleri ile çalışabilir
+	children: ReactNode; // Ekle // Component Aç ve Kapama tagleri ile çalışabilir
 	onClick(): void; // Butonun click yapıldığını form componentten yakalamak için kullandık.
 };
 type ButtonColor = 'primary' | 'secondary' | 'danger';
