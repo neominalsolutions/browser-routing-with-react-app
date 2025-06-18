@@ -3,6 +3,7 @@
 // numeric-input
 // button
 
+import Button from '../../../components/button/button';
 import Dropdown from '../../../components/dropdown/dropdown.component';
 import NumericInput from '../../../components/numeric-input/numeric-input';
 
@@ -30,6 +31,10 @@ function CartForm() {
 		console.log('value', value);
 	};
 
+	const onButtonClick = () => {
+		console.log('tıklandı');
+	};
+
 	return (
 		<>
 			<Dropdown
@@ -46,6 +51,11 @@ function CartForm() {
 				label="Adet:"
 				onChange={onInputChange}
 			/>
+
+			<Button color="secondary" onClick={onButtonClick}>
+				Ekle
+			</Button>
+
 			<h1>Cart Form</h1>
 		</>
 	);

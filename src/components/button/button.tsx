@@ -21,6 +21,7 @@ function Button({ children, color, onClick }: ButtonProps) {
 				: '#dee2e6',
 		padding: 5,
 		borderRadius: 5,
+		minWidth: 200,
 	};
 
 	return (
