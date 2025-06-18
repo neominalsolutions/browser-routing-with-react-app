@@ -10,6 +10,8 @@ import Label from '../../../components/label/label';
 import NumericInput from '../../../components/numeric-input/numeric-input';
 
 function CartForm() {
+	console.log('...rendering');
+
 	const products = [
 		{ id: 1, name: 'ürün-1', price: 10 },
 		{ id: 2, name: 'ürün-2', price: 50 },
@@ -35,24 +37,25 @@ function CartForm() {
 		console.log('selected-item', value);
 		const selectedItem = products.find((x) => x.id === value);
 		console.log('selectedItem', selectedItem);
-
 		priceRef.current = Number(selectedItem?.price);
-		setTotal(priceRef.current * quantityRef.current);
+		// setTotal(priceRef.current * quantityRef.current);
 	};
 
 	const onInputChange = (value: number) => {
 		console.log('value', value);
-
 		quantityRef.current = value;
-		setTotal(priceRef.current * quantityRef.current);
+		// setTotal(priceRef.current * quantityRef.current);
 	};
 
 	const onButtonClick = () => {
 		console.log('tıklandı');
+		setTotal(priceRef.current * quantityRef.current);
 	};
 
 	return (
 		<>
+			<h1>Cart Form</h1>
+			<hr></hr>
 			<Dropdown
 				items={dpItems}
 				label="Ürünler"
@@ -73,8 +76,6 @@ function CartForm() {
 			</Button>
 
 			<Label text="Toplam Tutar" value={total} />
-
-			<h1>Cart Form</h1>
 		</>
 	);
 }
