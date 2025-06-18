@@ -100,6 +100,30 @@ function CartComponent() {
 				<div>
 					<button onClick={addItem}>Ekle</button>
 				</div>
+
+				<hr></hr>
+				<h1>Sepete Arayüzü</h1>
+
+				<div style={{ padding: 5, margin: 5 }}>
+					{cartItems.map((item) => {
+						return (
+							<div
+								style={{
+									backgroundColor: 'purple',
+									color: 'whitesmoke',
+									padding: 10,
+									borderRadius: 5,
+								}}
+								key={item.productid}
+							>
+								{item.name} x {item.quantity}
+								<button style={{ padding: 2, margin: 2 }}>Çıkar</button>
+							</div>
+						);
+					})}
+
+					<p>Sepet Toplam: 0</p>
+				</div>
 			</div>
 		</>
 	);
